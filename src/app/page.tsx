@@ -9,9 +9,10 @@ import { TimeFrameOptions } from "./constants/timeFrames";
 import { PeriodOptions } from "./constants/period";
 import { TIME_FORMAT_OPTIONS } from "./constants/timeFormat";
 import TimeFormatPicker from "./components/TimeFormatPicker";
+import { ConversionRateChartData } from "./types/conversionRateType";
 
 export default function Home() {
-  const [chartData, setChartData] = useState<any>(null);
+  const [chartData, setChartData] = useState<ConversionRateChartData | null>(null);
   const [period, setPeriod] = useState<string>(PeriodOptions.FIVE_MINUTES);
   const [timeframe, setTimeframe] = useState<string>(TimeFrameOptions.ONE_HOUR);
   const [format, setFormat] = useState<string>(TIME_FORMAT_OPTIONS.LOCAL);

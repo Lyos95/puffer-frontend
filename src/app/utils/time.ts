@@ -24,7 +24,7 @@ export function getDateRange(timeframe: string): {
   return { startDate, endDate };
 }
 
-export function getPeriod(period: string): Number {
+export function getPeriod(period: string): number {
   // Calculate the interval based on the period
   return Period[period].value;
 }

@@ -9,7 +9,9 @@ import {
   Tooltip,
   Legend,
   Filler,
+  TooltipItem,
 } from "chart.js";
+import { ConversionRateChartData } from "../types/conversionRateType";
 
 ChartJS.register(
   CategoryScale,
@@ -23,7 +25,7 @@ ChartJS.register(
 );
 
 interface ChartComponentProps {
-  data: any;
+  data: ConversionRateChartData;
   chartTitle?: string;
 }
 
@@ -42,11 +44,12 @@ export default function ChartComponent({
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       tooltip: {
         callbacks: {
-          label: function(context:any) {
-            return `${context.dataset.label}: ${context.parsed.y}`;
+          label: function (context: TooltipItem<"line">) {
+            return `${context.dataset.label ?? ""}: ${context.parsed.y ?? ""}`;
         }
         }
       },
@@ -90,7 +93,7 @@ export default function ChartComponent({
     <div className="flex justify-center">
       <div className="w-full md:w-3/4 lg:w-1/2 mx-auto bg-white p-6 rounded-lg shadow-md h-[500px]">
         <Line
-          options={{ ...options, maintainAspectRatio: false }}
+          options={{ ...options }}
           data={chartData}
         />
       </div>
