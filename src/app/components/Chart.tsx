@@ -10,6 +10,7 @@ import {
   Legend,
   Filler,
 } from "chart.js";
+import { ConversionRateChartData } from "../types/conversionRateType";
 
 ChartJS.register(
   CategoryScale,
@@ -23,7 +24,7 @@ ChartJS.register(
 );
 
 interface ChartComponentProps {
-  data: any;
+  data: ConversionRateChartData;
   chartTitle?: string;
 }
 
@@ -45,7 +46,7 @@ export default function ChartComponent({
     plugins: {
       tooltip: {
         callbacks: {
-          label: function(context:any) {
+          label: function(context: { dataset: { label: string; }; parsed: { y: string; }; }) {
             return `${context.dataset.label}: ${context.parsed.y}`;
         }
         }

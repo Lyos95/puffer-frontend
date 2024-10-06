@@ -11,7 +11,7 @@ const TimeFormatPicker: React.FC<TimeFormatPickerProps> = ({
 }) => {
   const generateOptions = () => {
     return Object.values(TIME_FORMAT_OPTIONS).map((format) => {
-      return <option value={format}>{TimeFormat[format].label}</option>;
+      return <option key={format} value={format}>{TimeFormat[format].label}</option>;
     });
   };
 

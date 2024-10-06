@@ -11,7 +11,7 @@ const TimeFramePicker: React.FC<TimeFramePickerProps> = ({
 }) => {
   const generateOptions = () => {
     return Object.values(TimeFrameOptions).map((timeframe) => {
-      return <option value={timeframe}>{TimeFrame[timeframe].label}</option>;
+      return <option key={timeframe}  value={timeframe}>{TimeFrame[timeframe].label}</option>;
     });
   };
 

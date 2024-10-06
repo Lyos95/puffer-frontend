@@ -8,7 +8,7 @@ interface PeriodPickerProps {
 const PeriodPicker: React.FC<PeriodPickerProps> = ({ period, setPeriod }) => {
   const generateOptions = () => {
     return Object.values(PeriodOptions).map((period) => {
-      return <option value={period}>{Period[period].label}</option>;
+      return <option key={period} value={period}>{Period[period].label}</option>;
     });
   };
 
