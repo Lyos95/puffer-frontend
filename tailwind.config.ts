@@ -11,6 +11,11 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: '#6B46C1', // purple
+        secondary: '#9F7AEA', // light purple
+      },
+      transitionDuration: {
+        '3000': '3000ms',
       },
     },
   },
