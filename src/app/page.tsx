@@ -12,7 +12,9 @@ import TimeFormatPicker from "./components/TimeFormatPicker";
 import { ConversionRateChartData } from "./types/conversionRateType";
 
 export default function Home() {
-  const [chartData, setChartData] = useState<ConversionRateChartData | null>(null);
+  const [chartData, setChartData] = useState<ConversionRateChartData | null>(
+    null
+  );
   const [period, setPeriod] = useState<string>(PeriodOptions.FIVE_MINUTES);
   const [timeframe, setTimeframe] = useState<string>(TimeFrameOptions.ONE_HOUR);
   const [format, setFormat] = useState<string>(TIME_FORMAT_OPTIONS.LOCAL);
@@ -36,7 +38,11 @@ export default function Home() {
         <TimeFramePicker timeframe={timeframe} setTimeframe={setTimeframe} />
         <TimeFormatPicker format={format} setFormat={setFormat} />
       </div>
-      <Chart data={chartData} chartTitle="PufETH Conversion Rate" />
+      {chartData ? (
+        <Chart data={chartData} chartTitle="PufETH Conversion Rate" />
+      ) : (
+        ""
+      )}
     </div>
   );
 }
