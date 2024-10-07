@@ -1,4 +1,4 @@
-import { Period, PeriodOptions } from "../constants/period";
+import { PERIOD, PERIOD_OPTIONS } from "../constants/period";
 
 interface PeriodPickerProps {
   period: string;
@@ -7,8 +7,8 @@ interface PeriodPickerProps {
 
 const PeriodPicker: React.FC<PeriodPickerProps> = ({ period, setPeriod }) => {
   const generateOptions = () => {
-    return Object.values(PeriodOptions).map((period) => {
-      return <option key={period} value={period}>{Period[period].label}</option>;
+    return Object.values(PERIOD_OPTIONS).map((period) => {
+      return <option key={period} value={period}>{PERIOD[period].label}</option>;
     });
   };
 

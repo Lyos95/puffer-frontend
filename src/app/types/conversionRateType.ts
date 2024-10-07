@@ -7,4 +7,11 @@ export type ConversionRateChartData = {
       backgroundColor: string;
     }[];
   };
+
+  export type ConversionRateData = {
+    _id: number;
+    conversionRate: {
+      $numberDecimal: string;
+    };
+  };
   

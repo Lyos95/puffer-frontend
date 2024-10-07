@@ -5,30 +5,33 @@ import Chart from "./components/Chart";
 import PeriodPicker from "./components/PeriodPicker";
 import TimeFramePicker from "./components/TimeFramePicker";
 import { useEffect, useState } from "react";
-import { TimeFrameOptions } from "./constants/timeFrames";
-import { PeriodOptions } from "./constants/period";
+import { TIME_FRAME_OPTIONS } from "./constants/timeFrames";
+import { PERIOD_OPTIONS } from "./constants/period";
 import { TIME_FORMAT_OPTIONS } from "./constants/timeFormat";
 import TimeFormatPicker from "./components/TimeFormatPicker";
-import { ConversionRateChartData } from "./types/conversionRateType";
+import { ConversionRateData } from "./types/conversionRateType";
 
 export default function Home() {
-  const [chartData, setChartData] = useState<ConversionRateChartData | null>(
+  const [chartData, setChartData] = useState<ConversionRateData[] | null>(
     null
   );
-  const [period, setPeriod] = useState<string>(PeriodOptions.FIVE_MINUTES);
-  const [timeframe, setTimeframe] = useState<string>(TimeFrameOptions.ONE_HOUR);
-  const [format, setFormat] = useState<string>(TIME_FORMAT_OPTIONS.LOCAL);
+  const [period, setPeriod] = useState<string>(PERIOD_OPTIONS.FIVE_MINUTES);
+  const [timeframe, setTimeframe] = useState<string>(TIME_FRAME_OPTIONS.ONE_HOUR);
+  const [format, setFormat] = useState<string>(TIME_FORMAT_OPTIONS.UTC);
+
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(
-        `/api/data?period=${period}&timeframe=${timeframe}&format=${format}`
+        `/api/conversion-rate?period=${period}&timeframe=${timeframe}`
       );
+
       const data = await res.json();
+
       setChartData(data);
     }
     fetchData();
-  }, [period, timeframe, format]);
+  }, [period, timeframe]);
 
   return (
     <div className="p-8">
@@ -39,7 +42,7 @@ export default function Home() {
         <TimeFormatPicker format={format} setFormat={setFormat} />
       </div>
       {chartData ? (
-        <Chart data={chartData} chartTitle="PufETH Conversion Rate" />
+        <Chart data={chartData} timeFormat={format} chartTitle="PufETH Conversion Rate" />
       ) : (
         ""
       )}

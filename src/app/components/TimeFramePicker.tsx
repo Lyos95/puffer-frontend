@@ -1,4 +1,4 @@
-import { TimeFrame, TimeFrameOptions } from "../constants/timeFrames";
+import { TIME_FRAME, TIME_FRAME_OPTIONS } from "../constants/timeFrames";
 
 interface TimeFramePickerProps {
   timeframe: string;
@@ -10,8 +10,8 @@ const TimeFramePicker: React.FC<TimeFramePickerProps> = ({
   setTimeframe,
 }) => {
   const generateOptions = () => {
-    return Object.values(TimeFrameOptions).map((timeframe) => {
-      return <option key={timeframe}  value={timeframe}>{TimeFrame[timeframe].label}</option>;
+    return Object.values(TIME_FRAME_OPTIONS).map((timeframe) => {
+      return <option key={timeframe}  value={timeframe}>{TIME_FRAME[timeframe].label}</option>;
     });
   };
 

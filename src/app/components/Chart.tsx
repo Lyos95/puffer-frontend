@@ -11,7 +11,12 @@ import {
   Filler,
   TooltipItem,
 } from "chart.js";
-import { ConversionRateChartData } from "../types/conversionRateType";
+import {
+  ConversionRateChartData,
+  ConversionRateData,
+} from "../types/conversionRateType";
+import { TIME_FORMAT_OPTIONS } from "../constants/timeFormat";
+import { convertDateStampToTimeFormat } from "../utils/time";
 
 ChartJS.register(
   CategoryScale,
@@ -25,21 +30,37 @@ ChartJS.register(
 );
 
 interface ChartComponentProps {
-  data: ConversionRateChartData;
+  data: ConversionRateData[];
   chartTitle?: string;
+  timeFormat?: string;
 }
 
 export default function ChartComponent({
   data,
   chartTitle = "Chart",
+  timeFormat = TIME_FORMAT_OPTIONS.UTC,
 }: ChartComponentProps) {
   if (!data) {
     return <p className="text-center text-secondary">Loading...</p>;
   }
 
-  const chartData = {
-    ...data,
-    labels: data.labels,
+  const chartData: ConversionRateChartData = {
+    labels: data.map((point: ConversionRateData) => {
+      return convertDateStampToTimeFormat(point._id, timeFormat);
+    }),
+    datasets: [
+      {
+        label: "Conversion Rate",
+        data: data.map((point: ConversionRateData) => {
+          const conversionRate = parseFloat(
+            point.conversionRate["$numberDecimal"]
+          );
+          return conversionRate;
+        }),
+        borderColor: "#9F7AEA",
+        backgroundColor: "rgba(159, 122, 234, 0.2)",
+      },
+    ],
   };
 
   const options = {
@@ -50,8 +71,8 @@ export default function ChartComponent({
         callbacks: {
           label: function (context: TooltipItem<"line">) {
             return `${context.dataset.label ?? ""}: ${context.parsed.y ?? ""}`;
-        }
-        }
+          },
+        },
       },
       legend: {
         position: "top" as const,
@@ -92,10 +113,7 @@ export default function ChartComponent({
   return (
     <div className="flex justify-center">
       <div className="w-full md:w-3/4 lg:w-1/2 mx-auto bg-white p-6 rounded-lg shadow-md h-[500px]">
-        <Line
-          options={{ ...options }}
-          data={chartData}
-        />
+        <Line options={{ ...options }} data={chartData} />
       </div>
     </div>
   );
