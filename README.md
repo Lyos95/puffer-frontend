@@ -1,6 +1,6 @@
 # pufETH Conversion Tracker
 
-![App Screenshot](assets\pufferApp.PNG)
+![App Screenshot](assets/pufferApp.PNG)
 
 ### Live Version
 
