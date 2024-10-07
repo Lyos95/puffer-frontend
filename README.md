@@ -74,5 +74,5 @@ Start the development server:
 
 - **Accessibility Improvements**: Enhance page accessibility, particularly for charts. Consider using accessible chart libraries like [Highcharts](https://www.highcharts.com/).
 - **Localization (i18n)**: Implement internationalization to support multiple languages and regional settings.
-- **Real-Time Data**: Introduce live data updates using WebSockets or server-sent events for real-time tracking.
+- **Real-Time Data**: Introduce live data updates for real-time tracking.
 - **Additional Metrics**: Include `totalAssets` and `totalSupply` in the charts or provide separate visualizations for deeper insights.
