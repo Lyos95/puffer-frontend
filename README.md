@@ -8,8 +8,8 @@ Access the published app [here](https://puffer-frontend-42c632068ebb.herokuapp.c
 
 ## Usage
 
-1. **Select TimeFrame**: Use the timeframe selector to choose the period you want to analyze.
-2. **Adjust Period Grouping**: Modify the period settings to group data points and average them accordingly.
+1. **Select Time Frame**: Choose the specific time range for the data you wish to view, such as from today back to three days ago.
+2. **Adjust Data Grouping Period**: Select the interval at which you want to group data points. The application will average the data within each selected period and display a single data point per interval, making the chart easier to read.
 3. **Change Time Zone**: Select your preferred time zone from the available options to view data in local time.
 4. **View Interactive Chart**: Analyze the conversion rate displayed on the interactive line chart powered by [Chart.js](https://www.chartjs.org/).
 
